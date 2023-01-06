@@ -28,9 +28,21 @@ module.exports  ={
             console.log(err);
             return res.status(500).json(err);
         })
-    }
+    },
     // UPDATE a user
-
+    updateUser(req, res) {
+        User.findOneAndUpdate(
+            { _id: req.params.userId},
+            { $set: req.body },
+            { runValidators: true, new: true }
+        )
+        .then((user) => 
+            !user
+                ? res. status(404).json({ message: "No User found with this ID!"})
+                : res.json(user)
+        )
+        .catch((err) => res.status(500).json(err));
+    },
     // DELETE a user
 
     // BONUS: Remove a user's associated thoughts when deleted
