@@ -21,7 +21,14 @@ module.exports  ={
         .catch((err) => res.status(500).json(err));
     },
     // CREATE a user
-
+    createUser(req, res) {
+        User.create(req.body)
+        .then((user) => res.json(user))
+        .catch((err) => {
+            console.log(err);
+            return res.status(500).json(err);
+        })
+    }
     // UPDATE a user
 
     // DELETE a user
