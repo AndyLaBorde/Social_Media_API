@@ -44,8 +44,17 @@ module.exports  ={
         .catch((err) => res.status(500).json(err));
     },
     // DELETE a user
-
-    // BONUS: Remove a user's associated thoughts when deleted
+    deleteUser(req, res) {
+        User.findOneAndDelete({ _id: req.params.userId})
+        .then((user) => 
+            !user
+                ? res.status(404).json({ mesasage: "No User found with this ID!"})
+                // BONUS: Remove a user's associated thoughts when deleted
+                : Thought.deleteMany({ _id: {$in: user.thoughts}})    
+        )
+        .then(() => res.json({ message: "User and their thought have been deleted!"}))
+        .catch((err) => res.status(500).json(err))
+    }
 
     //Add a friend to a user's friend list
 
