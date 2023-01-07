@@ -21,9 +21,9 @@ router.route('/:userId')
 .put(updateUser)
 .delete(deleteUser);
 
-// localhost:3001/api/users/:userId/friends:friendId 
+// localhost:3001/api/users/:userId/:friendId 
 // POST and DELETE a friend by id
-router.route('/:userId/friends/:friendsId')
+router.route('/:userId/:friendId')
 .post(addFriend)
 .delete(deleteFriend);
 
