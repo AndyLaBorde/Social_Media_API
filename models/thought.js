@@ -1,14 +1,14 @@
-const { Schema, model, Types } = require('mongoose');
+const { mongoose } = require('mongoose');
 // import momnet to format timestamp
 const moment = require('moment');
 
 // reaction schema
-const reactionSchema = new Schema (
+const reactionSchema = new mongoose.Schema (
     {
         // reactionId , mongoose ObjectId data type, default value is set to new ObjectId
         reactionId: {
-            type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId
+            type: mongoose.Schema.Types.ObjectId,
+            default: () => new mongoose.Types.ObjectId
         },
         //reactionBody, STRING REQUIRED MAX=280
         reactionBody: {
@@ -40,7 +40,7 @@ const reactionSchema = new Schema (
 
 
 // thought schema
-const thoughtSchema = new Schema (
+const thoughtSchema = new mongoose.Schema (
     {
         // THOUGHT TEXT MUST BE STRING, REQUIRED, MIN=1, MAX=280
         thoughtText: {
@@ -81,7 +81,8 @@ thoughtSchema.virtual('reactionCount')
 });
 
 //create the thought model
-const Thought = model('Thought', thoughtSchema);
+
+const Thought = mongoose.model('Thought', thoughtSchema);
 
 module.exports = Thought;
 
