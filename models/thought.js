@@ -80,6 +80,7 @@ thoughtSchema.virtual('reactionCount')
     return this.reactions.length;
 });
 
+//create the thought model
 const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;
